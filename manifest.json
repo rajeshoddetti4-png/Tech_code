@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Genie Code",
+  "version": "2.0",
+  "description": "AI Data Assistant — Databricks, Power BI, Snowflake, NetSuite",
+  "permissions": ["sidePanel", "activeTab", "scripting", "storage", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "side_panel": { "default_path": "sidepanel.html" },
+  "content_scripts": [{ "matches": ["<all_urls>"], "js": ["content.js"], "run_at": "document_idle" }],
+  "action": {
+    "default_title": "Open Genie Code",
+    "default_icon": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" }
+  },
+  "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" }
+}
