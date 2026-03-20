@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Genie Code — Databricks</title>
+<title>Tech Code — AI Data Engineering</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --sb-bg:#1c1c2b;--sb-border:#2a2a3a;--sb-text:#9b9bb0;--sb-hover:#25253a;--sb-active:#2d2d45;
+  --sb:#1c1c2b;--sbb:#2a2a3a;--sbt:#9b9bb0;--sbh:#25253a;--sba:#2d2d45;
   --w:#fff;--bd:#e0e0e0;--t:#1a1a1a;--t2:#555;--t3:#888;--t4:#bbb;
   --g:#f8f8f8;--g2:#f0f0f0;
   --bl:#1976d2;--blbg:#e8f0fe;
@@ -18,222 +18,124 @@
   --code:#1e1e2e;
   --f:'Inter',sans-serif;--m:'JetBrains Mono',monospace;
 }
-html,body{height:100%;overflow:hidden;background:#f5f5f5;}
-body{font-family:var(--f);font-size:13px;color:var(--t);display:flex;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:var(--f);font-size:13px;color:var(--t);display:flex;background:#f5f5f5;}
 
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes fade{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
 @keyframes dots{0%{content:''}33%{content:'.'}66%{content:'..'}100%{content:'...'}}
+@keyframes slideIn{from{opacity:0;transform:translateX(6px)}to{opacity:1;transform:translateX(0)}}
 
-/* ══ DARK LEFT SIDEBAR ══════════════════════════════════════════ */
-#sidebar{
-  width:220px;background:var(--sb-bg);flex-shrink:0;
-  display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;
-  border-right:1px solid var(--sb-border);
-}
-#sidebar::-webkit-scrollbar{width:4px;}
-#sidebar::-webkit-scrollbar-thumb{background:#333;}
+/* ══ SIDEBAR ════════════════════════════════════════ */
+#sb{width:220px;background:var(--sb);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;overflow-x:hidden;}
+#sb::-webkit-scrollbar{width:3px;}
+#sb::-webkit-scrollbar-thumb{background:#333;}
 
-#sb-logo{
-  display:flex;align-items:center;gap:10px;padding:14px 14px 12px;
-  border-bottom:1px solid var(--sb-border);cursor:pointer;flex-shrink:0;
-}
-#sb-logo-ic{
-  width:30px;height:30px;border-radius:8px;flex-shrink:0;
-  background:linear-gradient(135deg,#7c3aed,#db2777);
-  display:flex;align-items:center;justify-content:center;font-size:15px;
-}
-#sb-logo-txt{font-size:14px;font-weight:700;color:#fff;letter-spacing:-0.3px;}
+#sb-logo{display:flex;align-items:center;gap:10px;padding:14px;border-bottom:1px solid var(--sbb);cursor:pointer;flex-shrink:0;}
+#sb-logo-ic{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#7c3aed,#db2777);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+#sb-logo-txt{font-size:14px;font-weight:700;color:#fff;}
 
-.sb-new-btn{
-  margin:10px 10px 4px;background:linear-gradient(135deg,#7c3aed,#db2777);
-  color:#fff;border:none;border-radius:7px;padding:9px 12px;
-  font-size:12px;font-weight:600;cursor:pointer;font-family:var(--f);
-  display:flex;align-items:center;gap:7px;width:calc(100% - 20px);
-  transition:opacity .15s;
-}
-.sb-new-btn:hover{opacity:.9;}
+.sb-new{margin:10px;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border:none;border-radius:7px;padding:9px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--f);display:flex;align-items:center;gap:7px;width:calc(100% - 20px);transition:opacity .15s;}
+.sb-new:hover{opacity:.88;}
 
-.sb-sec{
-  padding:10px 14px 4px;font-size:9px;font-weight:700;color:#444;
-  letter-spacing:.8px;text-transform:uppercase;flex-shrink:0;
-}
-.sb-item{
-  display:flex;align-items:center;gap:9px;padding:7px 14px;
-  font-size:12px;color:var(--sb-text);cursor:pointer;
-  transition:all .1s;flex-shrink:0;position:relative;
-}
-.sb-item:hover{background:var(--sb-hover);color:#d0d0e8;}
-.sb-item.on{background:var(--sb-active);color:#fff;}
-.sb-item.hl{
-  background:rgba(124,58,237,.12);color:#a78bfa;
-  border-left:2px solid #7c3aed;padding-left:12px;
-}
+.sb-sec{padding:10px 14px 4px;font-size:9px;font-weight:700;color:#444;letter-spacing:.8px;text-transform:uppercase;}
+.sb-item{display:flex;align-items:center;gap:9px;padding:7px 14px;font-size:12px;color:var(--sbt);cursor:pointer;transition:all .1s;position:relative;}
+.sb-item:hover{background:var(--sbh);color:#d0d0e8;}
+.sb-item.on{background:var(--sba);color:#fff;}
+.sb-item.hl{background:rgba(124,58,237,.12);color:#a78bfa;border-left:2px solid #7c3aed;padding-left:12px;}
 .sb-ic{font-size:13px;width:18px;text-align:center;flex-shrink:0;}
-.sb-badge{
-  margin-left:auto;background:#7c3aed;color:#fff;
-  font-size:8px;padding:1px 5px;border-radius:8px;font-weight:600;
-}
-.sb-badge-beta{
-  margin-left:auto;background:#1d3a4f;color:#60a5fa;
-  font-size:8px;padding:1px 5px;border-radius:3px;
-}
-.sb-divider{height:1px;background:var(--sb-border);margin:6px 0;}
+.sb-beta{margin-left:auto;background:#1d3a4f;color:#60a5fa;font-size:8px;padding:1px 5px;border-radius:3px;}
+.sb-div{height:1px;background:var(--sbb);margin:5px 0;}
 
-/* ══ MAIN AREA ══════════════════════════════════════════════════ */
+/* ══ APP ════════════════════════════════════════════ */
 #app{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
 
-/* ══ TOP TOPNAV ═════════════════════════════════════════════════ */
-#topnav{
-  display:flex;align-items:center;height:42px;
-  background:var(--w);border-bottom:1px solid var(--bd);
-  padding:0 14px;gap:10px;flex-shrink:0;
-}
-#nav-breadcrumb{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t3);}
-#nav-breadcrumb span.crumb{cursor:pointer;}
-#nav-breadcrumb span.crumb:hover{color:var(--bl);}
-#nav-breadcrumb span.sep{color:var(--t4);}
-#nav-breadcrumb span.cur{color:var(--t);font-weight:600;}
-#lf-badge{
-  font-size:9px;color:var(--t3);background:var(--g2);
-  padding:2px 7px;border-radius:3px;border:1px solid var(--bd);white-space:nowrap;
-}
-#nav-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+/* TOP NAV */
+#nav{display:flex;align-items:center;height:42px;background:var(--w);border-bottom:1px solid var(--bd);padding:0 14px;gap:10px;flex-shrink:0;}
+#nav-bc{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t3);}
+.bc-c{cursor:pointer;}.bc-c:hover{color:var(--bl);}
+.bc-s{color:var(--t4);}
+.bc-cur{color:var(--t);font-weight:600;}
+#lf-badge{font-size:9px;color:var(--t3);background:var(--g2);padding:2px 7px;border-radius:3px;border:1px solid var(--bd);}
+#nav-r{margin-left:auto;display:flex;align-items:center;gap:8px;}
 .nav-note{font-size:10px;color:var(--t3);}
-.nav-link{font-size:10px;color:var(--bl);text-decoration:none;}
-.nb{border:1px solid var(--bd);color:var(--t2);background:none;padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;font-family:var(--f);display:none;}
-.nb-p{background:var(--bl);border:none;color:#fff;padding:4px 12px;border-radius:4px;font-size:11px;cursor:pointer;font-family:var(--f);font-weight:600;display:none;align-items:center;gap:5px;}
+.nav-lnk{font-size:10px;color:var(--bl);text-decoration:none;}
+#dry-btn{border:1px solid var(--bd);color:var(--t2);background:none;padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;display:none;}
+#run-btn{background:var(--bl);border:none;color:#fff;padding:4px 12px;border-radius:4px;font-size:11px;cursor:pointer;font-weight:600;display:none;align-items:center;gap:5px;}
 
-/* ══ SUB TABS (Pipeline / All files) ═══════════════════════════ */
-#subtabs{
-  display:flex;align-items:center;padding:0 14px;height:36px;
-  border-bottom:1px solid var(--bd);gap:4px;background:var(--w);flex-shrink:0;
-}
-.stab{
-  background:none;border:none;border-bottom:2px solid transparent;
-  color:var(--t3);padding:5px 4px;cursor:pointer;font-size:12px;
-  font-family:var(--f);font-weight:500;transition:all .12s;margin-right:8px;
-}
+/* SUBTABS */
+#stabs{display:flex;align-items:center;padding:0 14px;height:36px;border-bottom:1px solid var(--bd);gap:4px;background:var(--w);flex-shrink:0;}
+.stab{background:none;border:none;border-bottom:2px solid transparent;color:var(--t3);padding:5px 4px;cursor:pointer;font-size:12px;font-family:var(--f);font-weight:500;margin-right:8px;}
 .stab.on{color:var(--bl);border-bottom-color:var(--bl);}
 .stab-star{margin-left:auto;background:none;border:none;color:var(--t4);cursor:pointer;font-size:14px;}
 
-/* ══ CONTENT AREA ═══════════════════════════════════════════════ */
+/* CONTENT */
 #content{display:flex;flex:1;overflow:hidden;}
 
-/* ══ LEFT (Pipeline area) ══════════════════════════════════════ */
+/* LEFT */
 #left{flex:1;background:var(--w);display:flex;flex-direction:column;overflow:hidden;border-right:1px solid var(--bd);}
 #left-body{display:flex;flex:1;overflow:hidden;}
 
 /* Welcome */
 #welcome{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 24px;overflow-y:auto;}
-.wcard{
-  width:100%;max-width:540px;background:var(--w);border:1px solid var(--bd);
-  border-radius:8px;padding:12px 16px;cursor:pointer;
-  transition:all .14s;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;
-}
-.wcard:hover{border-color:var(--bl);box-shadow:0 2px 10px rgba(0,0,0,.08);}
-.wcard:hover .wcard-title{color:var(--bl);}
-.wcard-ic{font-size:16px;margin-top:1px;flex-shrink:0;}
-.wcard-title{font-size:13px;font-weight:600;color:var(--t);margin-bottom:2px;}
-.wcard-sub{font-size:11px;color:var(--t3);line-height:1.5;}
-#ai-btn{
-  margin-top:18px;background:var(--w);border:1.5px solid var(--pu);
-  color:var(--pu);padding:9px 20px;border-radius:6px;cursor:pointer;
-  font-size:13px;font-weight:600;font-family:var(--f);
-  display:flex;align-items:center;gap:7px;transition:all .15s;
-}
+.wcard{width:100%;max-width:540px;background:var(--w);border:1px solid var(--bd);border-radius:8px;padding:12px 16px;cursor:pointer;transition:all .14s;margin-bottom:8px;display:flex;align-items:flex-start;gap:10px;}
+.wcard:hover{border-color:var(--bl);box-shadow:0 2px 10px rgba(0,0,0,.07);}
+.wcard:hover .wt{color:var(--bl);}
+.wic{font-size:16px;margin-top:1px;flex-shrink:0;}
+.wt{font-size:13px;font-weight:600;color:var(--t);margin-bottom:2px;transition:color .12s;}
+.ws{font-size:11px;color:var(--t3);line-height:1.5;}
+#ai-btn{margin-top:18px;background:var(--w);border:1.5px solid var(--pu);color:var(--pu);padding:9px 20px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;font-family:var(--f);display:flex;align-items:center;gap:7px;transition:all .15s;}
 #ai-btn:hover{background:var(--pubg);}
 
 /* Pipeline editor */
-#pipe-view{display:none;flex:1;}
-#pipe-sb{
-  width:200px;border-right:1px solid var(--bd);
-  display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;
-}
-.ps-hdr{padding:8px 10px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;}
-.ps-hdr span{font-size:11px;font-weight:600;}
-.ps-cfg{font-size:10px;color:var(--t3);padding:6px 10px;border-bottom:1px solid var(--bd);}
-.ps-item{display:flex;align-items:center;gap:6px;padding:6px 10px;font-size:11px;color:var(--t2);cursor:pointer;}
-.ps-item:hover{background:var(--g);}
-.ps-item.on{background:var(--blbg);color:var(--bl);}
-#pipe-canvas{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;}
-.pc-title{font-size:15px;font-weight:600;color:var(--t);margin-bottom:4px;cursor:pointer;}
-.pc-title:hover{color:var(--bl);}
-.pc-sub{font-size:11px;color:var(--t3);margin-bottom:22px;}
-.pc-add{background:var(--w);border:1px solid var(--bd);color:var(--t2);padding:7px 14px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--f);}
+#pv{display:none;flex:1;}
+#psb{width:200px;border-right:1px solid var(--bd);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;}
+.psh{padding:8px 10px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;}
+.psh span{font-size:11px;font-weight:600;}
+.psc{font-size:10px;color:var(--t3);padding:6px 10px;border-bottom:1px solid var(--bd);}
+.psi{display:flex;align-items:center;gap:6px;padding:6px 10px;font-size:11px;color:var(--t2);cursor:pointer;}
+.psi:hover{background:var(--g);}
+.psi.on{background:var(--blbg);color:var(--bl);}
+#pc{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;}
+.pct{font-size:15px;font-weight:600;color:var(--t);margin-bottom:4px;cursor:pointer;transition:color .12s;}
+.pct:hover{color:var(--bl);}
+.pcs{font-size:11px;color:var(--t3);margin-bottom:22px;}
+.pcb{background:var(--w);border:1px solid var(--bd);color:var(--t2);padding:7px 14px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--f);margin-bottom:22px;}
+.pcb:hover{border-color:var(--bl);color:var(--bl);}
 
-/* Status bar */
-#sbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:4px 14px;background:var(--w);border-top:1px solid var(--bd);
-  font-size:10px;color:var(--t4);flex-shrink:0;
-}
-.sbar-tabs{display:flex;gap:12px;}
-.sbar-tab{cursor:pointer;}
-.sbar-tab:hover{color:var(--bl);}
+/* Status */
+#sbar{display:flex;align-items:center;justify-content:space-between;padding:4px 14px;background:var(--w);border-top:1px solid var(--bd);font-size:10px;color:var(--t4);flex-shrink:0;}
+.sbt{cursor:pointer;}.sbt:hover{color:var(--bl);}
 
-/* ══ RIGHT GENIE PANEL ══════════════════════════════════════════ */
-#right{
-  width:420px;display:flex;flex-direction:column;
-  background:var(--w);flex-shrink:0;
-}
+/* ══ RIGHT GENIE ════════════════════════════════════ */
+#right{width:420px;display:flex;flex-direction:column;background:var(--w);flex-shrink:0;}
 
-/* Genie header */
-#gh{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:8px 12px;border-bottom:1px solid var(--bd);flex-shrink:0;
-}
-#gh-left{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:700;}
-#gh-right{display:flex;gap:2px;}
+#gh{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--bd);flex-shrink:0;}
+#gh-l{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:700;}
 .gic{background:none;border:none;color:var(--t3);cursor:pointer;font-size:13px;padding:3px 5px;border-radius:3px;}
 .gic:hover{background:var(--g2);}
-
 #g-help{padding:4px 12px;font-size:10px;color:var(--t3);border-bottom:1px solid var(--bd);flex-shrink:0;}
 #g-help a{color:var(--bl);text-decoration:none;}
+#gctx{display:none;align-items:center;gap:6px;padding:5px 12px;border-bottom:1px solid var(--bd);background:var(--g);font-size:11px;flex-shrink:0;}
+#gctx-n{color:var(--bl);font-weight:500;}
 
-#g-ctx{
-  display:none;align-items:center;gap:6px;
-  padding:5px 12px;border-bottom:1px solid var(--bd);
-  background:var(--g);font-size:11px;flex-shrink:0;
-}
-#g-ctx-name{color:var(--bl);font-weight:500;}
-
-/* Tool switcher */
-#tool-bar{
-  display:flex;gap:4px;padding:7px 12px;overflow-x:auto;
-  border-bottom:1px solid var(--bd);flex-shrink:0;scrollbar-width:none;
-}
-#tool-bar::-webkit-scrollbar{display:none;}
-.tc{
-  background:none;border:1px solid var(--bd);color:var(--t3);
-  padding:3px 10px;border-radius:12px;font-size:10px;cursor:pointer;
-  font-family:var(--f);font-weight:500;white-space:nowrap;transition:all .12s;
-}
+/* Tool bar */
+#tbar{display:flex;gap:4px;padding:7px 12px;overflow-x:auto;border-bottom:1px solid var(--bd);flex-shrink:0;scrollbar-width:none;}
+#tbar::-webkit-scrollbar{display:none;}
+.tc{background:none;border:1px solid var(--bd);color:var(--t3);padding:3px 10px;border-radius:12px;font-size:10px;cursor:pointer;font-family:var(--f);font-weight:500;white-space:nowrap;transition:all .12s;}
 .tc:hover{border-color:var(--t2);color:var(--t);}
 .tc.on{border-color:var(--pu);color:var(--pu);background:var(--pubg);}
 
-/* Genie welcome */
-#gw{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:20px 14px;overflow-y:auto;
-}
-.gw-pill{
-  background:var(--w);border:1px solid var(--bd);color:var(--t);
-  padding:6px 13px;border-radius:18px;font-size:11px;cursor:pointer;
-  font-family:var(--f);font-weight:500;transition:all .12s;
-  display:inline-flex;align-items:center;gap:5px;margin:0 4px 7px;
-}
-.gw-pill:hover{background:var(--pubg);border-color:var(--pu);color:var(--pu);}
-#g-caps{width:100%;background:var(--g);border-radius:10px;padding:5px 0;margin-top:10px;}
-.g-cap{
-  display:flex;align-items:center;gap:10px;padding:8px 14px;
-  font-size:12px;color:var(--t2);cursor:pointer;transition:background .1s;
-}
-.g-cap:hover{background:var(--g2);color:var(--t);}
-.g-cap:hover .g-cap-arrow{opacity:1;}
-.g-cap-ic{font-size:14px;width:22px;text-align:center;flex-shrink:0;}
-.g-cap-arrow{margin-left:auto;color:var(--t4);font-size:11px;opacity:0;transition:opacity .12s;}
+/* Welcome genie */
+#gw{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 14px;overflow-y:auto;}
+.gwp{background:var(--w);border:1px solid var(--bd);color:var(--t);padding:6px 13px;border-radius:18px;font-size:11px;cursor:pointer;font-family:var(--f);font-weight:500;transition:all .12s;display:inline-flex;align-items:center;gap:5px;margin:0 4px 7px;}
+.gwp:hover{background:var(--pubg);border-color:var(--pu);color:var(--pu);}
+#gcaps{width:100%;background:var(--g);border-radius:10px;padding:5px 0;margin-top:10px;}
+.gcap{display:flex;align-items:center;gap:10px;padding:8px 14px;font-size:12px;color:var(--t2);cursor:pointer;transition:background .1s;}
+.gcap:hover{background:var(--g2);color:var(--t);}
+.gcap:hover .gca{opacity:1;}
+.gcic{font-size:14px;width:22px;text-align:center;flex-shrink:0;}
+.gca{margin-left:auto;color:var(--t4);font-size:11px;opacity:0;transition:opacity .12s;}
 
 /* Chat */
 #gchat{flex:1;display:none;flex-direction:column;overflow:hidden;}
@@ -241,145 +143,126 @@ body{font-family:var(--f);font-size:13px;color:var(--t);display:flex;}
 #gmsgs::-webkit-scrollbar{width:4px;}
 #gmsgs::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px;}
 
-.msg{animation:fade .2s ease;font-family:var(--f);}
-.msg-user{
-  background:var(--blbg);border-radius:8px;
-  padding:9px 12px;font-size:12px;color:var(--t);
-  line-height:1.65;margin-left:14px;
-}
-.msg-thoughts{font-size:11px;color:var(--t3);line-height:1.7;padding:2px 0;}
+.msg{animation:fade .2s ease;}
+.mu{background:var(--blbg);border-radius:8px;padding:9px 12px;font-size:12px;color:var(--t);line-height:1.65;margin-left:14px;}
+.mt{font-size:11px;color:var(--t3);line-height:1.7;padding:2px 0;}
 .tl{font-style:italic;}
-.msg-action{font-size:12px;color:var(--t);line-height:1.7;padding:1px 0;}
-.msg-action strong{font-weight:600;}
-.msg-status{font-size:11px;color:var(--t2);display:flex;align-items:center;gap:5px;padding:1px 0;}
-.spin{width:11px;height:11px;border:2px solid var(--bd);border-top:2px solid var(--bl);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0;}
-.msg-found{font-size:11px;color:var(--t2);padding:1px 0;}
-.msg-fail{
-  display:flex;align-items:center;justify-content:space-between;
-  background:var(--rdbg);border:1px solid #ffcdd2;
-  border-radius:4px;padding:4px 9px;font-size:11px;color:var(--rd);
-}
-.msg-ap{border:1px solid var(--bd);border-radius:7px;overflow:hidden;margin:2px 0;}
-.ap-hdr{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:7px 12px;background:var(--g);border-bottom:1px solid var(--bd);
-}
-.ap-hdr-txt{font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;}
-.ap-ct{font-size:10px;color:var(--t3);}
-.ap-row{display:flex;align-items:center;gap:9px;padding:6px 12px;border-bottom:1px solid var(--bd);font-size:11px;color:var(--t2);}
-.ap-row:last-child{border-bottom:none;}
+.ma{font-size:12px;color:var(--t);line-height:1.7;padding:1px 0;}
+.ma strong{font-weight:600;}
+.ms{font-size:11px;color:var(--t2);display:flex;align-items:center;gap:5px;padding:1px 0;}
+.spn{width:11px;height:11px;border:2px solid var(--bd);border-top:2px solid var(--bl);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0;}
+.mf{font-size:11px;color:var(--t2);padding:1px 0;}
+.mfail{display:flex;align-items:center;justify-content:space-between;background:var(--rdbg);border:1px solid #ffcdd2;border-radius:4px;padding:4px 9px;font-size:11px;color:var(--rd);}
+.map{border:1px solid var(--bd);border-radius:7px;overflow:hidden;margin:2px 0;}
+.aph{display:flex;align-items:center;justify-content:space-between;padding:7px 12px;background:var(--g);border-bottom:1px solid var(--bd);}
+.apht{font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;}
+.apc{font-size:10px;color:var(--t3);}
+.apr{display:flex;align-items:center;gap:9px;padding:6px 12px;border-bottom:1px solid var(--bd);font-size:11px;color:var(--t2);}
+.apr:last-child{border-bottom:none;}
 .dot{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;}
-.ddone{background:var(--grbg);color:var(--gr);}
-.dpend{background:var(--g2);color:var(--t4);}
-.msg-code{background:var(--code);border-radius:7px;overflow:hidden;margin:3px 0;}
-.mc-hdr{display:flex;align-items:center;justify-content:space-between;padding:5px 12px;background:#12121f;}
-.mc-lang{font-size:9px;color:#585b70;letter-spacing:1px;text-transform:uppercase;font-family:var(--m);}
-.mc-copy{font-size:9px;color:#585b70;background:none;border:1px solid #2a2a3e;padding:2px 8px;border-radius:3px;cursor:pointer;}
-.mc-copy:hover{color:#cdd6f4;border-color:#555;}
-.mc-body{padding:11px 13px;font-size:11px;color:#cdd6f4;font-family:var(--m);line-height:1.8;overflow-x:auto;white-space:pre;}
+.dd{background:var(--grbg);color:var(--gr);}
+.dp{background:var(--g2);color:var(--t4);}
+.mcode{background:var(--code);border-radius:7px;overflow:hidden;margin:3px 0;animation:slideIn .2s ease;}
+.mch{display:flex;align-items:center;justify-content:space-between;padding:5px 12px;background:#12121f;}
+.mcl{font-size:9px;color:#585b70;letter-spacing:1px;text-transform:uppercase;font-family:var(--m);}
+.mcc{font-size:9px;color:#585b70;background:none;border:1px solid #2a2a3e;padding:2px 8px;border-radius:3px;cursor:pointer;}
+.mcc:hover{color:#cdd6f4;border-color:#555;}
+.mcb{padding:11px 13px;font-size:11px;color:#cdd6f4;font-family:var(--m);line-height:1.8;overflow-x:auto;white-space:pre;}
 .kw{color:#cba6f7;}.st{color:#a6e3a1;}.cm{color:#585b70;}.fn{color:#89dceb;}
-.msg-note{background:var(--blbg);border-left:3px solid var(--bl);border-radius:0 6px 6px 0;padding:7px 11px;font-size:11px;color:var(--t2);line-height:1.6;margin:2px 0;}
-.msg-numbered{font-size:12px;color:var(--t);line-height:1.7;padding:2px 0;}
-.msg-numbered ol,.msg-numbered ul{padding-left:18px;margin-top:5px;}
-.msg-numbered li{margin-bottom:4px;}
-.msg-numbered strong{font-weight:600;}
-.msg-numbered code{background:var(--g2);padding:1px 5px;border-radius:3px;font-family:var(--m);font-size:10px;}
-.msg-thinking{font-size:11px;color:var(--t3);font-style:italic;padding:1px 0;}
+.mnote{background:var(--blbg);border-left:3px solid var(--bl);border-radius:0 6px 6px 0;padding:7px 11px;font-size:11px;color:var(--t2);line-height:1.6;margin:2px 0;}
+.mnum{font-size:12px;color:var(--t);line-height:1.7;padding:2px 0;}
+.mnum ol,.mnum ul{padding-left:18px;margin-top:5px;}
+.mnum li{margin-bottom:4px;}
+.mnum strong{font-weight:600;}
+.mnum code{background:var(--g2);padding:1px 5px;border-radius:3px;font-family:var(--m);font-size:10px;}
+.mth{font-size:11px;color:var(--t3);font-style:italic;padding:1px 0;}
 .dots::after{content:'';animation:dots 1.2s infinite;}
 
 /* Input */
-#ginput{padding:8px 12px;border-top:1px solid var(--bd);flex-shrink:0;}
-#ginput-box{border:1px solid var(--bd);border-radius:8px;overflow:hidden;transition:border-color .12s;}
-#ginput-box:focus-within{border-color:var(--bl);}
+#ginp{padding:8px 12px;border-top:1px solid var(--bd);flex-shrink:0;}
+#ginp-box{border:1px solid var(--bd);border-radius:8px;overflow:hidden;transition:border-color .12s;}
+#ginp-box:focus-within{border-color:var(--bl);}
 #ta{width:100%;border:none;outline:none;padding:9px 12px;font-size:12px;font-family:var(--f);resize:none;line-height:1.5;min-height:36px;max-height:100px;color:var(--t);background:transparent;}
 #ta::placeholder{color:var(--t4);}
 #gbtm{display:flex;align-items:center;justify-content:space-between;padding:5px 8px;border-top:1px solid var(--bd);background:var(--g);}
 .iic{background:none;border:none;color:var(--t3);cursor:pointer;font-size:13px;padding:3px;border-radius:3px;}
 .iic:hover{background:var(--g2);}
-#agent-tog{font-size:11px;color:var(--t2);background:none;border:1px solid var(--bd);padding:3px 8px;border-radius:4px;cursor:pointer;font-family:var(--f);}
-#send-btn{background:none;border:none;color:var(--t4);cursor:pointer;font-size:17px;transition:color .12s;padding:2px 4px;}
-#send-btn.ready{color:var(--bl);}
-#gfooter{text-align:center;font-size:10px;color:var(--t4);padding:4px 12px;flex-shrink:0;}
+#atog{font-size:11px;color:var(--t2);background:none;border:1px solid var(--bd);padding:3px 8px;border-radius:4px;cursor:pointer;font-family:var(--f);}
+#sbtn{background:none;border:none;color:var(--t4);cursor:pointer;font-size:17px;transition:color .12s;padding:2px 4px;}
+#sbtn.ready{color:var(--bl);}
+#gftr{text-align:center;font-size:10px;color:var(--t4);padding:4px 12px;flex-shrink:0;}
 </style>
 </head>
 <body>
 
-<!-- ══ DARK LEFT SIDEBAR ══════════════════════════════════════ -->
-<div id="sidebar">
+<!-- SIDEBAR -->
+<div id="sb">
   <div id="sb-logo">
-    <div id="sb-logo-ic">✦</div>
-    <div id="sb-logo-txt">Genie Code</div>
+    <div id="sb-logo-ic">⚡</div>
+    <div id="sb-logo-txt">Tech Code</div>
   </div>
+  <button class="sb-new" onclick="newChat()"><span style="font-size:15px;">+</span> New conversation</button>
 
-  <button class="sb-new-btn" onclick="newChat()">
-    <span style="font-size:15px;">+</span> New conversation
-  </button>
-
-  <div class="sb-sec" style="margin-top:10px;">Workspace</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🏠</span> Home</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🕐</span> Recents</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">📚</span> Catalog</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">⚡</span> Jobs &amp; Pipelines</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">💻</span> Compute</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🔭</span> Discover <span class="sb-badge-beta">Beta</span></div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🛒</span> Marketplace</div>
-
-  <div class="sb-divider"></div>
+  <div class="sb-sec" style="margin-top:8px;">Workspace</div>
+  <div class="sb-item" onclick="sbc(this,'Home')"><span class="sb-ic">🏠</span> Home</div>
+  <div class="sb-item" onclick="sbc(this,'Recents')"><span class="sb-ic">🕐</span> Recents</div>
+  <div class="sb-item" onclick="sbc(this,'Catalog')"><span class="sb-ic">📚</span> Catalog</div>
+  <div class="sb-item" onclick="sbc(this,'Jobs')"><span class="sb-ic">⚡</span> Jobs &amp; Pipelines</div>
+  <div class="sb-item" onclick="sbc(this,'Compute')"><span class="sb-ic">💻</span> Compute</div>
+  <div class="sb-item" onclick="sbc(this,'Discover')"><span class="sb-ic">🔭</span> Discover <span class="sb-beta">Beta</span></div>
+  <div class="sb-item" onclick="sbc(this,'Marketplace')"><span class="sb-ic">🛒</span> Marketplace</div>
+  <div class="sb-div"></div>
 
   <div class="sb-sec">SQL</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">📝</span> SQL Editor</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🔍</span> Queries</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">📊</span> Dashboards</div>
-  <div class="sb-item hl on" id="sb-genie" onclick="sbClick(this)"><span class="sb-ic">✦</span> Genie</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">⚠</span> Alerts</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">📜</span> Query History</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🗄</span> SQL Warehouses</div>
-
-  <div class="sb-divider"></div>
+  <div class="sb-item" onclick="sbc(this,'SQL Editor')"><span class="sb-ic">📝</span> SQL Editor</div>
+  <div class="sb-item" onclick="sbc(this,'Queries')"><span class="sb-ic">🔍</span> Queries</div>
+  <div class="sb-item" onclick="sbc(this,'Dashboards')"><span class="sb-ic">📊</span> Dashboards</div>
+  <div class="sb-item hl" id="sb-genie" onclick="sbc(this,'Genie')"><span class="sb-ic">⚡</span> Genie</div>
+  <div class="sb-item" onclick="sbc(this,'Alerts')"><span class="sb-ic">⚠</span> Alerts</div>
+  <div class="sb-item" onclick="sbc(this,'Query History')"><span class="sb-ic">📜</span> Query History</div>
+  <div class="sb-item" onclick="sbc(this,'SQL Warehouses')"><span class="sb-ic">🗄</span> SQL Warehouses</div>
+  <div class="sb-div"></div>
 
   <div class="sb-sec">Data Engineering</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">▶</span> Runs</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">📥</span> Data Ingestion</div>
-
-  <div class="sb-divider"></div>
+  <div class="sb-item" onclick="sbc(this,'Runs')"><span class="sb-ic">▶</span> Runs</div>
+  <div class="sb-item" onclick="sbc(this,'Data Ingestion')"><span class="sb-ic">📥</span> Data Ingestion</div>
+  <div class="sb-div"></div>
 
   <div class="sb-sec">AI/ML</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🧪</span> Playground</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🤖</span> Agents</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🔌</span> AI Gateway <span class="sb-badge-beta">Beta</span></div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🧬</span> Experiments</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🏷</span> Features</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🧠</span> Models</div>
-  <div class="sb-item" onclick="sbClick(this)"><span class="sb-ic">🚀</span> Serving</div>
+  <div class="sb-item" onclick="sbc(this,'Playground')"><span class="sb-ic">🧪</span> Playground</div>
+  <div class="sb-item" onclick="sbc(this,'Agents')"><span class="sb-ic">🤖</span> Agents</div>
+  <div class="sb-item" onclick="sbc(this,'AI Gateway')"><span class="sb-ic">🔌</span> AI Gateway <span class="sb-beta">Beta</span></div>
+  <div class="sb-item" onclick="sbc(this,'Experiments')"><span class="sb-ic">🧬</span> Experiments</div>
+  <div class="sb-item" onclick="sbc(this,'Features')"><span class="sb-ic">🏷</span> Features</div>
+  <div class="sb-item" onclick="sbc(this,'Models')"><span class="sb-ic">🧠</span> Models</div>
+  <div class="sb-item" onclick="sbc(this,'Serving')"><span class="sb-ic">🚀</span> Serving</div>
 
-  <div style="margin-top:auto;padding:10px 14px;border-top:1px solid var(--sb-border);">
+  <div style="margin-top:auto;padding:10px 14px;border-top:1px solid var(--sbb);">
     <div style="font-size:10px;color:#444;text-align:center;">tech-code-ten.vercel.app</div>
   </div>
 </div>
 
-<!-- ══ MAIN ══════════════════════════════════════════════════ -->
+<!-- MAIN APP -->
 <div id="app">
 
-  <!-- TOP NAV -->
-  <div id="topnav">
-    <div id="nav-breadcrumb">
-      <span class="crumb">main</span>
-      <span class="sep">·</span>
-      <span class="crumb">default</span>
-      <span class="sep">▸</span>
-      <span class="cur" id="breadcrumb-name">New Pipeline</span>
+  <!-- NAV -->
+  <div id="nav">
+    <div id="nav-bc">
+      <span class="bc-c">main</span><span class="bc-s"> · </span>
+      <span class="bc-c">default</span><span class="bc-s"> ▸ </span>
+      <span class="bc-cur" id="bc-name">New Pipeline</span>
     </div>
     <div id="lf-badge">Lakeflow Pipelines Editor: ON</div>
-    <div id="nav-right">
+    <div id="nav-r">
       <span class="nav-note">Need additional help?</span>
-      <a class="nav-link" href="#">Contact support</a>
-      <button class="nb" id="dry-run-btn">Dry run</button>
-      <button class="nb-p" id="run-btn">▶ Run pipeline</button>
+      <a class="nav-lnk" href="#">Contact support</a>
+      <button id="dry-btn">Dry run</button>
+      <button id="run-btn">▶ Run pipeline</button>
     </div>
   </div>
 
-  <!-- SUB TABS -->
-  <div id="subtabs">
+  <!-- SUBTABS -->
+  <div id="stabs">
     <button class="stab on">Pipeline</button>
     <button class="stab">All files</button>
     <button class="stab-star">☆</button>
@@ -393,7 +276,7 @@ body{font-family:var(--f);font-size:13px;color:var(--t);display:flex;}
     <div id="left">
       <div id="left-body">
 
-        <!-- Welcome -->
+        <!-- WELCOME -->
         <div id="welcome">
           <div style="font-size:28px;color:#ccc;margin-bottom:12px;">↑</div>
           <div style="font-size:13px;font-weight:600;color:var(--t3);margin-bottom:2px;">Provide a catalog and schema</div>
@@ -401,100 +284,89 @@ body{font-family:var(--f);font-size:13px;color:var(--t);display:flex;}
           <div style="font-size:20px;font-weight:700;margin-bottom:3px;">Next step for your pipeline</div>
           <div style="font-size:12px;color:var(--t3);margin-bottom:18px;">Get started with the quick links below</div>
 
-          <div class="wcard" onclick="sp('Create a Databricks pipeline with sample code in SQL using medallion architecture bronze silver gold layers')">
-            <span class="wcard-ic">🔷</span>
-            <div><div class="wcard-title">Start with sample code in SQL</div><div class="wcard-sub">Pipeline with default folder structure and SQL sample code</div></div>
+          <div class="wcard" onclick="sp('Create a complete Databricks Lakeflow pipeline with sample SQL code using medallion architecture. Generate bronze, silver, and gold layer code with data quality expectations.')">
+            <span class="wic">🔷</span><div><div class="wt">Start with sample code in SQL</div><div class="ws">Pipeline with default folder structure and SQL sample code</div></div>
           </div>
-          <div class="wcard" onclick="sp('Create a Databricks pipeline with sample code in Python using PySpark and Delta Live Tables DLT')">
-            <span class="wcard-ic">🔷</span>
-            <div><div class="wcard-title">Start with sample code in Python</div><div class="wcard-sub">Pipeline with default folder structure and Python sample code</div></div>
+          <div class="wcard" onclick="sp('Create a complete Databricks Lakeflow pipeline with sample Python PySpark code using Delta Live Tables DLT. Include bronze ingestion, silver transformation, and gold aggregation layers.')">
+            <span class="wic">🔷</span><div><div class="wt">Start with sample code in Python</div><div class="ws">Pipeline with default folder structure and Python sample code</div></div>
           </div>
 
           <div style="font-size:12px;font-weight:600;color:var(--t2);margin:12px 0 8px;width:100%;max-width:540px;">Advanced options</div>
 
-          <div class="wcard" onclick="sp('Create a new empty transformation file for my Databricks Lakeflow pipeline with no preloaded code')">
-            <span class="wcard-ic">⟨⟩</span>
-            <div><div class="wcard-title">Start with an empty file</div><div class="wcard-sub">Pipeline with a new transformation file and no preloaded code</div></div>
+          <div class="wcard" onclick="sp('Create a new empty PySpark transformation file template for a Databricks Lakeflow pipeline with proper imports and structure but no preloaded business logic.')">
+            <span class="wic">⟨⟩</span><div><div class="wt">Start with an empty file</div><div class="ws">Pipeline with a new transformation file and no preloaded code</div></div>
           </div>
-          <div class="wcard" onclick="sp('How do I add existing assets from my Databricks Workspace to a Lakeflow pipeline?')">
-            <span class="wcard-ic">📄</span>
-            <div><div class="wcard-title">Add existing assets</div><div class="wcard-sub">Associate this pipeline with code files already in your Workspace, including Git folders</div></div>
+          <div class="wcard" onclick="sp('How do I add existing assets from my Databricks Workspace including Git folders to an existing Lakeflow pipeline? Give me step by step instructions.')">
+            <span class="wic">📄</span><div><div class="wt">Add existing assets</div><div class="ws">Associate this pipeline with code files already in your Workspace, including Git folders</div></div>
           </div>
-          <div class="wcard" onclick="sp('How do I set up a source-controlled Databricks pipeline project with Asset Bundles CICD support?')">
-            <span class="wcard-ic">🔗</span>
-            <div><div class="wcard-title">Set up as a source-controlled project</div><div class="wcard-sub">Set up the pipeline in a Databricks Asset Bundles project with version control</div></div>
+          <div class="wcard" onclick="sp('How do I set up a Databricks pipeline as a source-controlled project using Databricks Asset Bundles with CICD support, version control, and deployment configuration?')">
+            <span class="wic">🔗</span><div><div class="wt">Set up as a source-controlled project</div><div class="ws">Set up the pipeline in a Databricks Asset Bundles project with version control</div></div>
           </div>
-          <div style="font-size:11px;color:var(--bl);cursor:pointer;margin-top:8px;width:100%;max-width:540px;" onclick="sp('Show me all available pipeline setup options and advanced configurations in Databricks Lakeflow')">See more</div>
+          <div style="font-size:11px;color:var(--bl);cursor:pointer;margin-top:8px;width:100%;max-width:540px;" onclick="sp('Show me all available pipeline setup options, advanced configurations, AutoCDC flows, and Auto Loader setup in Databricks Lakeflow')">See more</div>
 
-          <button id="ai-btn" onclick="startAI()"><span style="font-size:15px;">✦</span> Create pipeline with AI</button>
+          <button id="ai-btn" onclick="startAI()"><span style="font-size:15px;">⚡</span> Create pipeline with AI</button>
         </div>
 
-        <!-- Pipeline editor -->
-        <div id="pipe-view">
-          <div id="pipe-sb">
-            <div class="ps-hdr">
+        <!-- PIPELINE VIEW -->
+        <div id="pv">
+          <div id="psb">
+            <div class="psh">
               <span id="psname">pipeline</span>
-              <span style="font-size:14px;color:var(--t3);cursor:pointer;" onclick="sp('How do I rename this Databricks pipeline?')">✎</span>
+              <span style="font-size:14px;color:var(--t3);cursor:pointer;" onclick="sp('How do I rename my Databricks pipeline? What are the naming conventions?')">✎</span>
             </div>
-            <div class="ps-cfg">
+            <div class="psc">
               <div style="font-weight:600;color:var(--t3);font-size:10px;">Pipeline configuration ⚙</div>
               <div style="color:var(--t4);margin-top:2px;">No runs yet 🔗</div>
             </div>
             <div style="padding:4px 0;">
-              <div class="ps-item on"><span>📁</span><span id="pstree">pipeline</span><span style="margin-left:auto;font-size:11px;color:var(--t4);">+</span></div>
-              <div class="ps-item" style="padding-left:20px;" onclick="sp('Create a new transformation file in the transformations folder of my pipeline')">
+              <div class="psi on"><span>📁</span><span id="pstree">pipeline</span><span style="margin-left:auto;font-size:12px;color:var(--t4);">+</span></div>
+              <div class="psi" style="padding-left:20px;" onclick="sp('Create a new PySpark transformation file in the transformations folder with proper DLT decorators and data quality expectations')">
                 <span>📁</span><span>transformations</span>
               </div>
               <div style="padding:3px 24px;font-size:10px;color:var(--t4);">This folder is empty</div>
             </div>
           </div>
-          <div id="pipe-canvas">
-            <div class="pc-title" onclick="sp('Visualize my pipeline tables and show how they connect with lineage')">Visualize your pipeline</div>
-            <div class="pc-sub">See how your tables and views connect</div>
-            <div class="pc-title" onclick="sp('Help me define and create the pipeline logic and transformation files')">Define your pipeline logic</div>
-            <div class="pc-sub">Explore and edit source files</div>
-            <div class="pc-title" onclick="sp('How do I extend this pipeline with new datasets, AutoCDC flows, and data quality expectations?')">Extend your pipeline</div>
-            <div class="pc-sub">Add new files based on predefined templates</div>
-            <button class="pc-add" onclick="sp('Add a new PySpark DLT transformation file to my Databricks pipeline')">+ Add</button>
-            <div style="margin-top:22px;">
-              <div class="pc-title" onclick="sp('Show me the pipeline execution results, run history, and performance metrics')">View pipeline results</div>
-              <div class="pc-sub">Explore and edit execution insights for your latest run</div>
-            </div>
+          <div id="pc">
+            <div class="pct" onclick="sp('Visualize my pipeline table lineage and show how bronze silver gold tables connect with data flow')">Visualize your pipeline</div>
+            <div class="pcs">See how your tables and views connect</div>
+            <div class="pct" onclick="sp('Help me define the pipeline logic. Show me how to create bronze ingestion, silver transformation, and gold aggregation files')">Define your pipeline logic</div>
+            <div class="pcs">Explore and edit source files</div>
+            <div class="pct" onclick="sp('How do I extend my pipeline with new datasets, AutoCDC flows, Auto Loader ingestion, and data quality expectations?')">Extend your pipeline</div>
+            <div class="pcs">Add new files based on predefined templates</div>
+            <button class="pcb" onclick="sp('Add a new PySpark Delta Live Tables transformation file to my pipeline with proper @dlt.table decorator and schema')">+ Add</button>
+            <div class="pct" onclick="sp('Show me the pipeline run results, execution insights, row counts, and any errors from the latest run')">View pipeline results</div>
+            <div class="pcs">Explore and edit execution insights for your latest run</div>
           </div>
         </div>
 
       </div>
       <div id="sbar">
-        <div class="sbar-tabs">
-          <span class="sbar-tab" onclick="sp('Show all tables and datasets in this pipeline')">Tables</span>
-          <span class="sbar-tab" onclick="sp('Show pipeline performance metrics and optimization suggestions')">Performance</span>
+        <div style="display:flex;gap:12px;">
+          <span class="sbt" onclick="sp('Show all tables, views, and materialized views in this pipeline with their schemas and row counts')">Tables</span>
+          <span class="sbt" onclick="sp('Show pipeline performance metrics, runtime stats, and optimization recommendations for this pipeline')">Performance</span>
         </div>
-        <div style="display:flex;gap:8px;">
-          <span>✓ 0</span><span>⚠ 0</span><span>⊘ 0</span>
-          <span style="cursor:pointer;" onclick="document.getElementById('pipe-view').style.display='none';document.getElementById('welcome').style.display='flex';">✕</span>
-        </div>
+        <div style="display:flex;gap:8px;"><span>✓ 0</span><span>⚠ 0</span><span>⊘ 0</span></div>
       </div>
     </div>
 
-    <!-- ══ RIGHT GENIE PANEL ═══════════════════════════════════ -->
+    <!-- RIGHT: TECH CODE PANEL -->
     <div id="right">
       <div id="gh">
-        <div id="gh-left">
-          <span style="color:var(--pu);font-size:16px;">✦</span> Genie Code
+        <div id="gh-l">
+          <span style="color:var(--pu);font-size:16px;">⚡</span> Tech Code
         </div>
-        <div id="gh-right">
+        <div style="display:flex;gap:2px;">
           <button class="gic" onclick="newChat()" title="New chat">+</button>
           <button class="gic" title="Settings">⚙</button>
-          <button class="gic" title="More options">⋮</button>
-          <button class="gic" onclick="toggleRight()" title="Close">✕</button>
+          <button class="gic" title="More">⋮</button>
+          <button class="gic" onclick="document.getElementById('right').style.display='none'" title="Close">✕</button>
           <button class="gic" title="Collapse">⌃</button>
         </div>
       </div>
       <div id="g-help">Need additional help? <a href="#">Contact support</a></div>
-      <div id="g-ctx"><span>🔗</span><span id="g-ctx-name">pipeline</span></div>
+      <div id="gctx"><span>🔗</span><span id="gctx-n">pipeline</span></div>
 
-      <!-- Tool switcher -->
-      <div id="tool-bar">
+      <div id="tbar">
         <button class="tc on" data-t="databricks" onclick="setTool(this)">🔷 Databricks</button>
         <button class="tc" data-t="powerbi" onclick="setTool(this)">📊 Power BI</button>
         <button class="tc" data-t="snowflake" onclick="setTool(this)">❄️ Snowflake</button>
@@ -502,56 +374,55 @@ body{font-family:var(--f);font-size:13px;color:var(--t);display:flex;}
         <button class="tc" data-t="synapse" onclick="setTool(this)">⚡ Synapse</button>
       </div>
 
-      <!-- Genie Welcome -->
+      <!-- Welcome -->
       <div id="gw">
         <svg width="54" height="54" viewBox="0 0 100 100" style="margin-bottom:12px;">
           <defs><linearGradient id="gl" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#7c3aed"/>
-            <stop offset="100%" stop-color="#db2777"/>
+            <stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#db2777"/>
           </linearGradient></defs>
-          <path d="M50 13 L50 4" stroke="url(#gl)" stroke-width="5" stroke-linecap="round" fill="none"/>
-          <path d="M50 4 L57 11" stroke="url(#gl)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <path d="M50 13L50 4" stroke="url(#gl)" stroke-width="5" stroke-linecap="round" fill="none"/>
+          <path d="M50 4L57 11" stroke="url(#gl)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
           <circle cx="50" cy="30" r="16" fill="none" stroke="url(#gl)" stroke-width="5"/>
-          <path d="M19 50 Q34 40 50 50 Q66 60 81 50" fill="none" stroke="url(#gl)" stroke-width="5" stroke-linecap="round"/>
+          <path d="M19 50Q34 40 50 50Q66 60 81 50" fill="none" stroke="url(#gl)" stroke-width="5" stroke-linecap="round"/>
           <line x1="50" y1="64" x2="50" y2="75" stroke="url(#gl)" stroke-width="5" stroke-linecap="round"/>
           <line x1="38" y1="75" x2="62" y2="75" stroke="url(#gl)" stroke-width="5" stroke-linecap="round"/>
         </svg>
-        <div style="font-size:20px;font-weight:700;margin-bottom:4px;">Genie Code</div>
+        <div style="font-size:20px;font-weight:700;margin-bottom:4px;">Tech Code</div>
         <div style="font-size:12px;color:var(--t3);margin-bottom:16px;">Run multi-step data and AI tasks</div>
         <div style="display:flex;flex-wrap:wrap;justify-content:center;margin-bottom:12px;">
-          <button class="gw-pill" onclick="sp('What can Genie Code do?')">What can Genie Code do?</button>
-          <button class="gw-pill" onclick="sp('Create a sample pipeline')">Create a sample pipeline</button>
+          <button class="gwp" onclick="sp('What can Tech Code do? List all capabilities and features')">What can Tech Code do?</button>
+          <button class="gwp" onclick="sp('Create a sample Databricks medallion pipeline with bronze silver gold layers')">Create a sample pipeline</button>
         </div>
-        <div id="g-caps">
-          <div class="g-cap" onclick="sp('Show me all available tables in my Databricks catalog and describe their schemas and lineage')">
-            <span class="g-cap-ic">▦</span><span>Tables</span><span class="g-cap-arrow">→</span>
+        <div id="gcaps">
+          <div class="gcap" onclick="sp('Show me all available tables in my catalog. List their schemas, column types, row counts, and lineage information')">
+            <span class="gcic">▦</span><span>Tables</span><span class="gca">→</span>
           </div>
-          <div class="g-cap" onclick="sp('Create a new Databricks notebook with a complete data analysis workflow and visualizations')">
-            <span class="g-cap-ic">📓</span><span>Notebooks</span><span class="g-cap-arrow">→</span>
+          <div class="gcap" onclick="sp('Create a new Databricks notebook with a complete data analysis workflow including EDA, visualizations, and summary statistics')">
+            <span class="gcic">📓</span><span>Notebooks</span><span class="gca">→</span>
           </div>
-          <div class="g-cap" onclick="sp('Write an optimized SQL query with CTEs and window functions to analyze my data')">
-            <span class="g-cap-ic">🔍</span><span>Queries</span><span class="g-cap-arrow">→</span>
+          <div class="gcap" onclick="sp('Write an optimized SQL query with CTEs, window functions, and proper indexing to analyze my data efficiently')">
+            <span class="gcic">🔍</span><span>Queries</span><span class="gca">→</span>
           </div>
-          <div class="g-cap" onclick="sp('Help me create and organize files in my Databricks workspace with best practices')">
-            <span class="g-cap-ic">📄</span><span>Files</span><span class="g-cap-arrow">→</span>
+          <div class="gcap" onclick="sp('Help me create, organize, and manage files in my workspace following Databricks best practices for project structure')">
+            <span class="gcic">📄</span><span>Files</span><span class="gca">→</span>
           </div>
-          <div class="g-cap" onclick="sp('How do I organize my Databricks workspace with folders and access controls?')">
-            <span class="g-cap-ic">📁</span><span>Folders</span><span class="g-cap-arrow">→</span>
+          <div class="gcap" onclick="sp('How do I organize my Databricks workspace with folders, permissions, and access controls for team collaboration?')">
+            <span class="gcic">📁</span><span>Folders</span><span class="gca">→</span>
           </div>
-          <div class="g-cap" onclick="sp('Create a production-ready Lakeflow Spark Declarative Pipeline with medallion architecture bronze silver gold layers with data quality expectations')">
-            <span class="g-cap-ic">⟳</span><span>Pipelines</span><span class="g-cap-arrow">→</span>
+          <div class="gcap" onclick="sp('Create a production-ready Lakeflow Spark Declarative Pipeline with medallion architecture. Include bronze Auto Loader ingestion, silver transformations with data quality expectations, and gold aggregations with @dlt.table decorators')">
+            <span class="gcic">⟳</span><span>Pipelines</span><span class="gca">→</span>
           </div>
-          <div class="g-cap" onclick="sp('Create a Visual ETL data transformation workflow in Databricks with drag and drop components')">
-            <span class="g-cap-ic">🔀</span><span>Visual ETLs</span><span class="g-cap-arrow">→</span>
+          <div class="gcap" onclick="sp('Create a Visual ETL workflow in Databricks with drag and drop transformations, joins, and aggregations')">
+            <span class="gcic">🔀</span><span>Visual ETLs</span><span class="gca">→</span>
           </div>
-          <div class="g-cap" onclick="sp('Create an AI/BI dashboard with multiple visualizations charts and filters for my data analysis')">
-            <span class="g-cap-ic">▦</span><span>Dashboards</span><span class="g-cap-arrow">→</span>
+          <div class="gcap" onclick="sp('Create an AI/BI dashboard with multiple charts, filters, time series visualizations, and KPI cards for my data')">
+            <span class="gcic">▦</span><span>Dashboards</span><span class="gca">→</span>
           </div>
-          <div class="g-cap" onclick="sp('Help me build an AI model or agent brick using Databricks Model Serving MLflow and LLM endpoints')">
-            <span class="g-cap-ic">✦</span><span>Models &amp; Agent Bricks</span><span class="g-cap-arrow">→</span>
+          <div class="gcap" onclick="sp('Help me build an AI model using Databricks Model Serving, MLflow experiment tracking, and LLM fine-tuning endpoints')">
+            <span class="gcic">✦</span><span>Models &amp; Agent Bricks</span><span class="gca">→</span>
           </div>
-          <div class="g-cap" onclick="sp('Create a skill.md file that teaches Genie Code how to handle my specific Databricks use case and coding preferences')">
-            <span class="g-cap-ic">⚡</span><span>Skills</span><span class="g-cap-arrow">→</span>
+          <div class="gcap" onclick="sp('Create a skill.md file that defines custom capabilities for Tech Code to handle my specific data engineering use cases and coding preferences')">
+            <span class="gcic">⚡</span><span>Skills</span><span class="gca">→</span>
           </div>
         </div>
       </div>
@@ -562,22 +433,22 @@ body{font-family:var(--f);font-size:13px;color:var(--t);display:flex;}
       </div>
 
       <!-- Input -->
-      <div id="ginput">
-        <div id="ginput-box">
-          <textarea id="ta" rows="2" placeholder="Send follow-up messages to guide Genie Code"></textarea>
+      <div id="ginp">
+        <div id="ginp-box">
+          <textarea id="ta" rows="2" placeholder="Send follow-up messages to guide Tech Code"></textarea>
           <div id="gbtm">
             <div style="display:flex;gap:3px;">
-              <button class="iic" title="Attach image">🖼</button>
-              <button class="iic" onclick="ins('@')" title="Reference a table or file">@</button>
+              <button class="iic">🖼</button>
+              <button class="iic" onclick="ins('@')">@</button>
             </div>
             <div style="display:flex;align-items:center;gap:6px;">
-              <button id="agent-tog">Agent ∨</button>
-              <button id="send-btn" onclick="go()" title="Send">▶</button>
+              <button id="atog">Agent ∨</button>
+              <button id="sbtn" onclick="go()">▶</button>
             </div>
           </div>
         </div>
       </div>
-      <div id="gfooter">Always review the accuracy of responses.</div>
+      <div id="gftr">Always review the accuracy of responses.</div>
     </div>
 
   </div>
@@ -585,273 +456,244 @@ body{font-family:var(--f);font-size:13px;color:var(--t);display:flex;}
 
 <script>
 const API = '/api/genie';
-let busy = false;
-let curTool = 'databricks';
+let busy = false, curTool = 'databricks';
 
-// ── TOOL SYSTEM PROMPTS ────────────────────────────────────────────────────
 const SYS = {
-  databricks:`You are Genie Code — an expert Databricks data engineer. Generate production-ready PySpark, Delta Live Tables (DLT), Spark SQL, and Lakeflow pipeline code. Always use medallion architecture (bronze/silver/gold). Include @dlt.table decorators, data quality expectations, and Unity Catalog references. Return ONLY valid JSON (no markdown, no backticks, no explanation outside JSON):
-{"thoughts":"detailed analysis of what needs to be done","steps":[{"title":"step name","done":true}],"explanation":"clear explanation of what this code does","code":"complete production-ready code here","lang":"python","notes":"important tips and next steps","tableCount":8,"assetCount":15,"sqlQuery":"SELECT volume_name, volume_catalog, volume_schema, volume_type FROM information_schema.volumes WHERE volume_schema = 'genie_code' LIMIT 20","pipelineName":"snake_case_pipeline_name"}`,
+  databricks: `You are Tech Code — an expert Databricks data engineer AI assistant. Generate production-ready, complete, runnable code for Databricks. Use PySpark, Delta Live Tables (DLT) with @dlt.table decorators, Spark SQL, Auto Loader, and Lakeflow pipelines. Always implement medallion architecture (bronze/silver/gold layers). Include data quality expectations with dlt.expect(). Use Unity Catalog table references. Return ONLY valid JSON no markdown no backticks:
+{"thoughts":"detailed step by step analysis of what needs to be built","steps":[{"title":"Gather source data context","done":true},{"title":"Design Bronze ingestion layer","done":true},{"title":"Design Silver transformation","done":true},{"title":"Design Gold aggregation","done":true},{"title":"Add data quality expectations","done":true}],"explanation":"clear explanation of what this pipeline does and how to use it","code":"COMPLETE production-ready code with all imports and proper structure","lang":"python","notes":"important next steps: how to run this, what parameters to change, and best practices","tableCount":8,"assetCount":15,"sqlQuery":"SELECT volume_name, volume_catalog, volume_schema, volume_type FROM information_schema.volumes WHERE volume_schema = 'genie_code' LIMIT 20","pipelineName":"snake_case_name_from_prompt"}`,
 
-  powerbi:`You are Genie Code — an expert Power BI and DAX developer. Generate correct DAX measures, calculated columns, and Power Query M code. Use CALCULATE, FILTER, ALL, DATEADD, TOTALYTD, SUMX correctly. Return ONLY valid JSON:
-{"thoughts":"analysis","steps":[{"title":"step","done":true}],"explanation":"what this does","code":"DAX or M code","lang":"dax","notes":"tips"}`,
+  powerbi: `You are Tech Code — an expert Power BI and DAX developer. Generate correct, production-ready DAX measures, calculated columns, and Power Query M code. Use CALCULATE, FILTER, ALL, ALLEXCEPT, DATEADD, TOTALYTD, SAMEPERIODLASTYEAR correctly. Return ONLY valid JSON:
+{"thoughts":"analysis of the DAX requirement","steps":[{"title":"Understand the measure logic","done":true},{"title":"Write DAX formula","done":true},{"title":"Add time intelligence","done":true}],"explanation":"what this DAX measure does and when to use it","code":"complete DAX or M Query code","lang":"dax","notes":"how to use this measure, filter context tips"}`,
 
-  snowflake:`You are Genie Code — an expert Snowflake data engineer. Generate optimized Snowflake SQL and Snowpark Python. Use VARIANT, FLATTEN, MERGE, dynamic data masking, time travel, clustering keys. Return ONLY valid JSON:
-{"thoughts":"analysis","steps":[{"title":"step","done":true}],"explanation":"what this does","code":"SQL or Snowpark Python","lang":"sql","notes":"tips"}`,
+  snowflake: `You are Tech Code — an expert Snowflake data engineer. Generate optimized Snowflake SQL and Snowpark Python. Use VARIANT, FLATTEN, MERGE, dynamic data masking, time travel, result cache, clustering keys. Return ONLY valid JSON:
+{"thoughts":"analysis","steps":[{"title":"Design query","done":true},{"title":"Optimize performance","done":true}],"explanation":"what this does","code":"complete Snowflake SQL or Snowpark code","lang":"sql","notes":"performance tips and Snowflake-specific best practices"}`,
 
-  netsuite:`You are Genie Code — an expert NetSuite developer. Generate SuiteQL queries, SuiteScript 2.x using N/search and N/record modules, saved search formulas. Return ONLY valid JSON:
-{"thoughts":"analysis","steps":[{"title":"step","done":true}],"explanation":"what this does","code":"SuiteQL or SuiteScript","lang":"sql","notes":"tips"}`,
+  netsuite: `You are Tech Code — an expert NetSuite ERP developer. Generate SuiteQL queries, SuiteScript 2.x using N/search, N/record, N/runtime modules. Know NetSuite record types: transaction, customer, vendor, employee, item. Return ONLY valid JSON:
+{"thoughts":"analysis","steps":[{"title":"Identify record types","done":true},{"title":"Write SuiteQL","done":true}],"explanation":"what this does","code":"complete SuiteQL or SuiteScript 2.x code","lang":"sql","notes":"NetSuite tips and common pitfalls"}`,
 
-  synapse:`You are Genie Code — an expert Azure Synapse Analytics engineer. Generate Synapse SQL (T-SQL), PySpark Spark pool code. Use HASH/ROUND_ROBIN distribution, result-set caching, materialized views. Return ONLY valid JSON:
-{"thoughts":"analysis","steps":[{"title":"step","done":true}],"explanation":"what this does","code":"T-SQL or PySpark","lang":"python","notes":"tips"}`
+  synapse: `You are Tech Code — an expert Azure Synapse Analytics engineer. Generate Synapse SQL (T-SQL dialect), PySpark Spark pool notebooks, and ADF pipeline configs. Use HASH/ROUND_ROBIN/REPLICATE distribution, result-set caching, materialized views, PolyBase. Return ONLY valid JSON:
+{"thoughts":"analysis","steps":[{"title":"Design solution","done":true},{"title":"Optimize for Synapse","done":true}],"explanation":"what this does","code":"complete T-SQL or PySpark code","lang":"python","notes":"Synapse-specific optimization tips"}`
 };
 
-// ── UTILS ──────────────────────────────────────────────────────────────────
 const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-const delay = ms => new Promise(r => setTimeout(r, ms));
-function addMsg(html){const g=document.getElementById('gmsgs'),d=document.createElement('div');d.className='msg';d.innerHTML=html;g.appendChild(d);g.scrollTop=g.scrollHeight;return d;}
+const delay = ms => new Promise(r=>setTimeout(r,ms));
+
+function addMsg(html){
+  const g=document.getElementById('gmsgs'),d=document.createElement('div');
+  d.className='msg';d.innerHTML=html;g.appendChild(d);g.scrollTop=g.scrollHeight;return d;
+}
 
 function hl(code,lang){
   let s=esc(code);
   if(lang==='sql'||lang==='dax'){
-    s=s.replace(/\b(SELECT|FROM|WHERE|GROUP BY|ORDER BY|LIMIT|JOIN|ON|AS|WITH|AND|OR|HAVING|LEFT|RIGHT|INNER|OUTER|COUNT|SUM|AVG|MAX|MIN|CASE|WHEN|THEN|ELSE|END|UNION|MERGE|INTO|VALUES|CREATE|TABLE|CALCULATE|FILTER|ALL|DATEADD|TOTALYTD|SUMX|RELATED|DISTINCT|NOT|IN|IS|NULL)\b/gi,'<span class="kw">$1</span>');
+    s=s.replace(/\b(SELECT|FROM|WHERE|GROUP BY|ORDER BY|LIMIT|JOIN|LEFT|RIGHT|INNER|OUTER|ON|AS|WITH|AND|OR|NOT|IN|IS|NULL|HAVING|DISTINCT|UNION|MERGE|INTO|VALUES|CREATE|TABLE|INSERT|UPDATE|DELETE|CASE|WHEN|THEN|ELSE|END|COUNT|SUM|AVG|MAX|MIN|CALCULATE|FILTER|ALL|ALLEXCEPT|DATEADD|TOTALYTD|SUMX|RELATED|SAMEPERIODLASTYEAR)\b/gi,'<span class="kw">$1</span>');
     s=s.replace(/'([^']*)'/g,'<span class="st">\'$1\'</span>');
+    s=s.replace(/--[^\n]*/g,'<span class="cm">$&</span>');
   } else {
-    s=s.replace(/\b(import|from|def|return|class|if|else|elif|for|in|not|and|or|with|as|True|False|None|async|await|try|except|raise|pass|yield|lambda)\b/g,'<span class="kw">$1</span>');
+    s=s.replace(/\b(import|from|def|return|class|if|else|elif|for|in|not|and|or|with|as|True|False|None|async|await|try|except|raise|pass|yield|lambda|while|break|continue)\b/g,'<span class="kw">$1</span>');
     s=s.replace(/(@[\w.]+)/g,'<span style="color:#f9e2af;">$1</span>');
-    s=s.replace(/"([^"]*)"/g,'<span class="st">"$1"</span>');
-    s=s.replace(/'([^']*)'/g,'<span class="st">\'$1\'</span>');
+    s=s.replace(/"([^"\\]*(\\.[^"\\]*)*)"/g,'<span class="st">"$1"</span>');
+    s=s.replace(/'([^'\\]*(\\.[^'\\]*)*)'/g,'<span class="st">\'$1\'</span>');
     s=s.replace(/(#[^\n]*)/g,'<span class="cm">$1</span>');
   }
   return s;
 }
 
 function codeBlock(code,lang){
-  return `<div class="msg-code"><div class="mc-hdr"><span class="mc-lang">${lang.toUpperCase()}</span><button class="mc-copy" onclick="cpCode(this)">Copy</button></div><pre class="mc-body">${hl(code.trim(),lang)}</pre></div>`;
+  return `<div class="mcode"><div class="mch"><span class="mcl">${lang.toUpperCase()}</span><button class="mcc" onclick="cpCode(this)">Copy</button></div><pre class="mcb">${hl(code.trim(),lang)}</pre></div>`;
 }
-function cpCode(btn){navigator.clipboard.writeText(btn.closest('.msg-code').querySelector('.mc-body').innerText).then(()=>{btn.textContent='✓ Copied';setTimeout(()=>btn.textContent='Copy',1500);});}
+function cpCode(btn){navigator.clipboard.writeText(btn.closest('.mcode').querySelector('.mcb').innerText).then(()=>{btn.textContent='✓ Copied';setTimeout(()=>btn.textContent='Copy',1500);});}
 
-// ── SIDEBAR ────────────────────────────────────────────────────────────────
-function sbClick(el){
-  document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('on'));
+// Sidebar click — trigger relevant prompt
+const SB_PROMPTS = {
+  'Home': 'Show me an overview of my Databricks workspace, recent activity, and quick actions I can take',
+  'Recents': 'Show me my recently accessed notebooks, pipelines, dashboards, and files in Databricks',
+  'Catalog': 'Show me how to explore Unity Catalog, find tables, view schemas, and check data lineage',
+  'Jobs': 'Show me how to create and manage Databricks Jobs and Lakeflow Pipelines with scheduling',
+  'Compute': 'Explain Databricks compute options: clusters, SQL warehouses, and Spark pools. How do I optimize costs?',
+  'Discover': 'What is Databricks Discover and how do I find and share data assets across my organization?',
+  'Marketplace': 'Show me what is available in the Databricks Marketplace for data sharing and third-party integrations',
+  'SQL Editor': 'Write an optimized SQL query to analyze my data in Databricks SQL Editor with proper syntax',
+  'Queries': 'Help me write a complex SQL query with CTEs, window functions, and aggregations for data analysis',
+  'Dashboards': 'Create an AI/BI dashboard with KPI cards, time series charts, bar charts, and filters for my data',
+  'Genie': 'What can Tech Code do? Show me all capabilities and give me example prompts for data engineering tasks',
+  'Alerts': 'How do I create SQL alerts in Databricks to monitor my data quality and send notifications?',
+  'Query History': 'How do I view and analyze query history in Databricks to identify slow queries and optimize performance?',
+  'SQL Warehouses': 'Explain Databricks SQL Warehouses, how to choose the right size, and how to optimize for cost and performance',
+  'Runs': 'Show me how to monitor pipeline runs, debug failures, and set up automated retry logic in Databricks',
+  'Data Ingestion': 'How do I ingest data into Databricks using Auto Loader, COPY INTO, and streaming sources?',
+  'Playground': 'Open the AI Playground and help me test prompts with different LLM models in Databricks',
+  'Agents': 'How do I build and deploy AI agents in Databricks using Agent Framework and MLflow?',
+  'AI Gateway': 'Explain Databricks AI Gateway for managing LLM API calls, rate limiting, and cost tracking',
+  'Experiments': 'How do I use MLflow Experiments to track machine learning model training runs and compare results?',
+  'Features': 'How do I use Databricks Feature Engineering to create and serve ML features for training and serving?',
+  'Models': 'How do I register, version, and manage ML models in MLflow Model Registry in Databricks?',
+  'Serving': 'How do I deploy ML models to Databricks Model Serving endpoints and monitor their performance?'
+};
+
+function sbc(el, name) {
+  document.querySelectorAll('.sb-item').forEach(i=>{i.classList.remove('on');});
   el.classList.add('on');
+  if(SB_PROMPTS[name]) sp(SB_PROMPTS[name]);
 }
 
-// ── TOOL SWITCH ────────────────────────────────────────────────────────────
 function setTool(btn){
   curTool=btn.dataset.t;
   document.querySelectorAll('.tc').forEach(b=>b.classList.toggle('on',b===btn));
-  const ph={databricks:'Send follow-up messages to guide Genie Code',powerbi:'Ask about DAX measures, reports, or datasets...',snowflake:'Ask about Snowflake SQL or Snowpark...',netsuite:'Ask about SuiteQL or SuiteScript...',synapse:'Ask about Synapse SQL or Spark pools...'};
+  const ph={databricks:'Send follow-up messages to guide Tech Code',powerbi:'Ask about DAX measures, reports, or Power BI...',snowflake:'Ask about Snowflake SQL or Snowpark...',netsuite:'Ask about SuiteQL or SuiteScript...',synapse:'Ask about Synapse SQL or Spark pools...'};
   document.getElementById('ta').placeholder=ph[curTool]||ph.databricks;
 }
 
-// ── TOGGLE RIGHT PANEL ─────────────────────────────────────────────────────
-function toggleRight(){
-  const r=document.getElementById('right');
-  r.style.display=r.style.display==='none'?'flex':'none';
-}
-
-// ── NEW CHAT ───────────────────────────────────────────────────────────────
 function newChat(){
   document.getElementById('gmsgs').innerHTML='';
   document.getElementById('ta').value='';
   document.getElementById('gchat').style.display='none';
   document.getElementById('gw').style.display='flex';
   document.getElementById('welcome').style.display='flex';
-  document.getElementById('pipe-view').style.display='none';
-  document.getElementById('breadcrumb-name').textContent='New Pipeline';
-  document.getElementById('g-ctx').style.display='none';
-  document.getElementById('dry-run-btn').style.display='none';
+  document.getElementById('pv').style.display='none';
+  document.getElementById('bc-name').textContent='New Pipeline';
+  document.getElementById('gctx').style.display='none';
+  document.getElementById('dry-btn').style.display='none';
   document.getElementById('run-btn').style.display='none';
   busy=false;
-  document.getElementById('send-btn').classList.remove('ready');
+  document.getElementById('sbtn').classList.remove('ready');
 }
 
-// ── SWITCH TO CHAT ─────────────────────────────────────────────────────────
 function switchToChat(){
   document.getElementById('gw').style.display='none';
-  const c=document.getElementById('gchat');
-  c.style.display='flex';c.style.flexDirection='column';
+  const c=document.getElementById('gchat');c.style.display='flex';c.style.flexDirection='column';
 }
 
-// ── sp() — send prompt from left panel clicks ──────────────────────────────
 function sp(text){document.getElementById('ta').value=text;go();}
+function startAI(){document.getElementById('ta').value='Create a pipeline that reads data from @';document.getElementById('ta').focus();switchToChat();}
+function ins(ch){const t=document.getElementById('ta');const p=t.selectionStart;t.value=t.value.slice(0,p)+ch+t.value.slice(p);t.selectionStart=t.selectionEnd=p+1;t.focus();}
 
-// ── startAI ────────────────────────────────────────────────────────────────
-function startAI(){
-  document.getElementById('ta').value='Create a pipeline that reads data from @';
-  document.getElementById('ta').focus();
-  switchToChat();
-}
-
-// ── ins ────────────────────────────────────────────────────────────────────
-function ins(ch){const ta=document.getElementById('ta');const p=ta.selectionStart;ta.value=ta.value.slice(0,p)+ch+ta.value.slice(p);ta.selectionStart=ta.selectionEnd=p+1;ta.focus();}
-
-// ── showPipeline ───────────────────────────────────────────────────────────
 function showPipeline(name){
   document.getElementById('welcome').style.display='none';
-  const pv=document.getElementById('pipe-view');
-  pv.style.display='flex';pv.style.flex='1';
+  const pv=document.getElementById('pv');pv.style.display='flex';pv.style.flex='1';
   document.getElementById('psname').textContent=name;
   document.getElementById('pstree').textContent=name;
-  document.getElementById('breadcrumb-name').textContent=name;
-  document.getElementById('g-ctx').style.display='flex';
-  document.getElementById('g-ctx-name').textContent=name;
-  document.getElementById('dry-run-btn').style.display='block';
+  document.getElementById('bc-name').textContent=name;
+  document.getElementById('gctx').style.display='flex';
+  document.getElementById('gctx-n').textContent=name;
+  document.getElementById('dry-btn').style.display='block';
   document.getElementById('run-btn').style.display='flex';
 }
 
-// ── getPipelineName ────────────────────────────────────────────────────────
-function getPipelineName(prompt){
-  const lower=prompt.toLowerCase();
-  const nm=prompt.match(/(?:name[d]?\s+|called\s+)["']?(\w+)["']?/i)||prompt.match(/["'](\w+_\w+)["']/);
-  if(nm) return nm[1].toLowerCase();
-  if(lower.includes('tier')) return 'tier_analytics';
-  if(lower.includes('sales')) return 'sales_pipeline';
-  if(lower.includes('customer')) return 'customer_analytics';
-  if(lower.includes('churn')) return 'churn_analysis';
-  if(lower.includes('finance')) return 'finance_pipeline';
-  if(lower.includes('iot')) return 'iot_pipeline';
-  if(lower.includes('inventory')) return 'inventory_pipeline';
-  if(lower.includes('medallion')||lower.includes('bronze')) return 'medallion_pipeline';
-  if(lower.includes('dax')||lower.includes('power bi')) return 'powerbi_report';
-  if(lower.includes('snowflake')) return 'snowflake_pipeline';
-  if(lower.includes('netsuite')||lower.includes('suiteql')) return 'netsuite_pipeline';
+function getPname(prompt){
+  const lo=prompt.toLowerCase();
+  const m=prompt.match(/(?:name[d]?\s+|called\s+)["']?(\w+)["']?/i)||prompt.match(/["'](\w+_\w+)["']/);
+  if(m) return m[1].toLowerCase();
+  if(lo.includes('tier')) return 'tier_analytics';
+  if(lo.includes('sales')) return 'sales_pipeline';
+  if(lo.includes('customer')) return 'customer_analytics';
+  if(lo.includes('churn')) return 'churn_analysis';
+  if(lo.includes('finance')) return 'finance_pipeline';
+  if(lo.includes('iot')) return 'iot_pipeline';
+  if(lo.includes('inventory')) return 'inventory_pipeline';
+  if(lo.includes('medallion')||lo.includes('bronze')) return 'medallion_pipeline';
+  if(lo.includes('dax')||lo.includes('power bi')) return 'powerbi_report';
+  if(lo.includes('snowflake')) return 'snowflake_pipeline';
+  if(lo.includes('netsuite')||lo.includes('suite')) return 'netsuite_pipeline';
+  if(lo.includes('dashboard')) return 'analytics_dashboard';
+  if(lo.includes('notebook')) return 'analysis_notebook';
   return 'new_pipeline';
 }
 
-// ── MAIN GO ────────────────────────────────────────────────────────────────
 async function go(){
   if(busy) return;
   const ta=document.getElementById('ta');
-  const prompt=ta.value.trim();
-  if(!prompt) return;
+  const prompt=ta.value.trim();if(!prompt) return;
   ta.value='';ta.style.height='auto';
-  busy=true;
-  document.getElementById('send-btn').classList.remove('ready');
+  busy=true;document.getElementById('sbtn').classList.remove('ready');
   switchToChat();
 
-  const pname=getPipelineName(prompt);
-  const isPipeline=/(pipeline|create|build|generate|notebook|query|dashboard|table|transform)/i.test(prompt);
+  const pname=getPname(prompt);
+  const isCreate=/(pipeline|create|build|generate|write|make|design|notebook|dashboard)/i.test(prompt);
 
-  // User bubble
-  addMsg(`<div class="msg-user">${esc(prompt)}</div>`);
+  addMsg(`<div class="mu">${esc(prompt)}</div>`);
   await delay(350);
 
-  // Thoughts
-  addMsg(`<div class="msg-thoughts"><span class="tl">Thoughts: </span>${esc('Analyzing: "'+prompt.substring(0,80)+(prompt.length>80?'...":':'":')+' — understanding what needs to be built, planning the approach, and identifying the right data assets...')}</div>`);
+  addMsg(`<div class="mt"><span class="tl">Thoughts: </span>${esc('Analyzing: "'+prompt.substring(0,90)+(prompt.length>90?'..."':'"')+' — understanding the requirement, planning the approach, and identifying the right data assets and tools...')}</div>`);
   await delay(500);
 
-  if(isPipeline){
-    addMsg(`<div class="msg-action">I'll set the pipeline name to "<strong>"${pname}"</strong>" as you specified, and then create the pipeline.</div>`);
+  if(isCreate){
+    addMsg(`<div class="ma">I'll set the pipeline name to "<strong>"${pname}"</strong>" as you specified, and then create the pipeline.</div>`);
     await delay(280);
-    addMsg(`<div class="msg-status">Set pipeline name to "${pname}"</div>`);
+    addMsg(`<div class="ms">Set pipeline name to "${pname}"</div>`);
     await delay(240);
-    addMsg(`<div class="msg-action"><strong>Now I'll create the pipeline.</strong></div>`);
+    addMsg(`<div class="ma"><strong>Now I'll create the pipeline.</strong></div>`);
     await delay(220);
   }
 
-  const spinEl=addMsg(`<div class="msg-status"><div class="spin"></div> ${isPipeline?'Creating pipeline':'Generating response'}</div>`);
+  const spinEl=addMsg(`<div class="ms"><div class="spn"></div>${isCreate?'Creating pipeline':'Generating response'}</div>`);
 
   try{
-    const res=await fetch(API,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({prompt,feature:curTool,systemPrompt:SYS[curTool]||SYS.databricks})
-    });
+    const res=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,feature:curTool,systemPrompt:SYS[curTool]||SYS.databricks})});
     const r=await res.json();
     if(r.error) throw new Error(r.error);
 
     let parsed={};
-    try{
-      const raw=r.result||r.response||'';
-      parsed=JSON.parse(raw.replace(/```json\n?|```\n?/g,'').trim());
-    }catch(_){
-      parsed={explanation:r.result||r.response||'Response generated.',code:'',lang:'python',steps:[],thoughts:'',notes:''};
-    }
+    try{parsed=JSON.parse((r.result||r.response||'').replace(/```json\n?|```\n?/g,'').trim());}
+    catch(_){parsed={explanation:r.result||r.response||'Response generated.',code:'',lang:'python',steps:[],thoughts:'',notes:''};}
 
-    spinEl.innerHTML=`<div class="msg-status">✓ ${isPipeline?'Created pipeline':'Done'}</div>`;
+    spinEl.innerHTML=`<div class="ms">✓ ${isCreate?'Created pipeline':'Done'}</div>`;
 
-    if(isPipeline){
-      addMsg(`<div class="msg-action">Your pipeline <strong>${pname}</strong> has been created! You're being redirected to the pipeline editor now.</div>`);
-      await delay(300);
-      addMsg(`<div class="msg-numbered">A couple of things to note:<ol><li><strong>Catalog/Schema:</strong> The pipeline was created with the <code>main.default</code> catalog and schema. You may want to update this using the selector in pipeline settings.</li><li><strong>Next steps in the editor:</strong> Once you're in the pipeline editor, you can:<ul><li>Set up ingestion from your volume or data source</li><li>Build transformations to analyze the data</li></ul></li></ol></div>`);
-      await delay(300);
+    if(isCreate){
+      addMsg(`<div class="ma">Your pipeline <strong>${pname}</strong> has been created! You're being redirected to the pipeline editor now.</div>`);
+      await delay(280);
+      addMsg(`<div class="mnum">A couple of things to note:<ol><li><strong>Catalog/Schema:</strong> The pipeline was created with the <code>main.default</code> catalog and schema. You may want to update this using the selector in pipeline settings.</li><li><strong>Next steps in the editor:</strong> Once you're in the pipeline editor, you can:<ul><li>Set up ingestion from your volume or data source</li><li>Build transformations to analyze the data</li><li>Run a dry run to validate before full execution</li></ul></li></ol></div>`);
+      await delay(280);
     }
 
     if(parsed.thoughts){
-      addMsg(`<div class="msg-thoughts"><span class="tl">Thoughts: </span>${esc(parsed.thoughts)}</div>`);
-      await delay(220);
+      addMsg(`<div class="mt"><span class="tl">Thoughts: </span>${esc(parsed.thoughts)}</div>`);
+      await delay(200);
     }
 
-    if(isPipeline && curTool==='databricks'){
-      addMsg(`<div class="msg-status">Read skill</div>`);
-      await delay(150);
-      addMsg(`<div class="msg-fail">Failed to list files in 📁 company X customer data <span>✕</span></div>`);
+    if(isCreate && curTool==='databricks'){
+      addMsg(`<div class="ms">Read skill</div>`);await delay(140);
+      addMsg(`<div class="mfail">Failed to list files in 📁 company X customer data <span>✕</span></div>`);await delay(130);
+      addMsg(`<div class="mfail">Failed to list files in 📁 genie_code <span>✕</span></div>`);await delay(150);
+      addMsg(`<div class="mf">Found tables (${parsed.tableCount||8})</div>`);await delay(120);
+      addMsg(`<div class="mf">Found assets (${parsed.assetCount||15})</div>`);await delay(180);
+      addMsg(`<div class="mt"><span class="tl">Thoughts: </span>Let me try to find the volume directly and run a SQL query to discover available volumes...</div>`);await delay(160);
+      addMsg(codeBlock(parsed.sqlQuery||`SELECT volume_name, volume_catalog, volume_schema, volume_type FROM information_schema.volumes WHERE volume_schema = 'genie_code' LIMIT 20`,'sql'));
       await delay(140);
-      addMsg(`<div class="msg-fail">Failed to list files in 📁 genie_code <span>✕</span></div>`);
-      await delay(160);
-      addMsg(`<div class="msg-found">Found tables (${parsed.tableCount||8})</div>`);
-      await delay(130);
-      addMsg(`<div class="msg-found">Found assets (${parsed.assetCount||15})</div>`);
-      await delay(200);
-      addMsg(`<div class="msg-thoughts"><span class="tl">Thoughts: </span>Let me try to find the volume directly. Let me run a SQL query to discover available volumes...</div>`);
-      await delay(180);
-      const sql=parsed.sqlQuery||`SELECT volume_name, volume_catalog, volume_schema, volume_type FROM information_schema.volumes WHERE volume_schema = 'genie_code' LIMIT 20`;
-      addMsg(codeBlock(sql,'sql'));
-      await delay(150);
-      addMsg(`<div class="msg-fail">Failed to get SQL sample <span>✕</span></div>`);
-      await delay(200);
+      addMsg(`<div class="mfail">Failed to get SQL sample <span>✕</span></div>`);await delay(180);
     }
 
-    const steps=parsed.steps||[
-      {title:'Gather source data context',done:true},
-      {title:'Design Bronze ingestion layer',done:true},
-      {title:'Design Silver transformation',done:true},
-      {title:'Design Gold aggregation',done:true},
-      {title:'Validate and optimize pipeline',done:true}
-    ];
-    const planRows=steps.map(s=>`<div class="ap-row"><div class="dot ${s.done?'ddone':'dpend'}">${s.done?'✓':'○'}</div><span>${esc(s.title)}</span></div>`).join('');
-    addMsg(`<div class="msg-ap"><div class="ap-hdr"><div class="ap-hdr-txt">⚡ Agent plan &nbsp;${esc(steps[0]?.title||'Gather source data context')}</div><div class="ap-ct">(${steps.filter(s=>s.done).length} of ${steps.length})</div></div>${planRows}</div>`);
-    await delay(260);
+    // Agent plan
+    const steps=parsed.steps||[{title:'Gather source data context',done:true},{title:'Design Bronze ingestion layer',done:true},{title:'Design Silver transformation',done:true},{title:'Design Gold aggregation',done:true},{title:'Validate and optimize',done:true}];
+    const rows=steps.map(s=>`<div class="apr"><div class="dot ${s.done?'dd':'dp'}">${s.done?'✓':'○'}</div><span>${esc(s.title)}</span></div>`).join('');
+    addMsg(`<div class="map"><div class="aph"><div class="apht">⚡ Agent plan &nbsp;${esc(steps[0]?.title||'Gather source data context')}</div><div class="apc">(${steps.filter(s=>s.done).length} of ${steps.length})</div></div>${rows}</div>`);
+    await delay(250);
 
-    if(parsed.explanation){
-      addMsg(`<div class="msg-action">${esc(parsed.explanation)}</div>`);
-      await delay(200);
-    }
+    if(parsed.explanation){addMsg(`<div class="ma">${esc(parsed.explanation)}</div>`);await delay(200);}
 
     if(parsed.code&&parsed.code.trim()){
       const lang=parsed.lang||(curTool==='powerbi'?'dax':curTool==='netsuite'?'sql':'python');
-      addMsg(codeBlock(parsed.code,lang));
-      await delay(200);
+      addMsg(codeBlock(parsed.code,lang));await delay(200);
     }
 
-    if(parsed.notes){
-      addMsg(`<div class="msg-note">💡 ${esc(parsed.notes)}</div>`);
-      await delay(150);
-    }
+    if(parsed.notes){addMsg(`<div class="mnote">💡 ${esc(parsed.notes)}</div>`);await delay(150);}
 
-    addMsg(`<div class="msg-thinking"><span class="dots">Thinking</span></div>`);
-    await delay(400);
+    addMsg(`<div class="mth"><span class="dots">Thinking</span></div>`);
+    await delay(350);
 
-    if(isPipeline) showPipeline(pname);
+    if(isCreate) showPipeline(pname);
 
   }catch(err){
-    spinEl.innerHTML=`<div class="msg-action" style="color:var(--rd);">⛔ ${esc(err.message)}<br><small style="color:var(--t3);">Check GROQ_API_KEY in Vercel → Settings → Environment Variables.</small></div>`;
+    spinEl.innerHTML=`<div class="ma" style="color:var(--rd);">⛔ ${esc(err.message)}<br><small style="color:var(--t3);">Check GROQ_API_KEY in Vercel → Settings → Environment Variables → Redeploy.</small></div>`;
   }
 
   busy=false;
-  document.getElementById('send-btn').classList.add('ready');
+  document.getElementById('sbtn').classList.add('ready');
   document.getElementById('gmsgs').scrollTop=99999;
 }
 
-// ── INPUT EVENTS ──────────────────────────────────────────────────────────
 const ta=document.getElementById('ta');
-ta.addEventListener('input',function(){
-  this.style.height='auto';
-  this.style.height=Math.min(this.scrollHeight,100)+'px';
-  document.getElementById('send-btn').classList.toggle('ready',this.value.trim().length>0);
-});
+ta.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';document.getElementById('sbtn').classList.toggle('ready',this.value.trim().length>0);});
 ta.addEventListener('keydown',ev=>{if(ev.key==='Enter'&&!ev.shiftKey){ev.preventDefault();go();}});
 </script>
 </body>
